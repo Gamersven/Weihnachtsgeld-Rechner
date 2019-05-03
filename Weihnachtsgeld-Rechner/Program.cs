@@ -8,35 +8,59 @@ namespace Weihnachtsgeld_Rechner
 {
     class Program
     {
-        static void Main(string[] args)
+        public static string Personage;
+        public static string Persongehalt;
+        public static string Persontreue;
+
+        public double Gehalt;
+        public double Alter;
+        public double Zeitinfirma;
+
+        public static void Main(string[] args)
         {
             Console.Title = "Weihnachtsgeld - Rechner";
-            Weihnachtsgeld_Menu();
+            Weihnachtsgeld_Menu2();
         }
 
-        public static void Weihnachtsgeld_Menu()
+      // public void Weihnachtsgeld_Menu()
+      // {
+      //     string[] lines = new string[] {
+      //         "Geben sie Ihr Gehalt ein","","Geben sie Ihr Alter ein","","Geben sie die Zeit in der Sie zu der Firma gehören an!"
+      //     };
+      //     GUIBuilder("DEIN WEIHNACHTSGELD!", lines);
+      //
+      //     Gehalt = double.Parse(Console.ReadLine());
+      //     GUIBuilder("DEIN WEIHNACHTSGELD!", lines);
+      //     Alter = int.Parse(Console.ReadLine());
+      //     GUIBuilder("DEIN WEIHNACHTSGELD!", lines);
+      //     Zeitinfirma = double.Parse(Console.ReadLine());
+      //
+      //     Weihnachtsgeld_Rechner(Gehalt, Alter, Zeitinfirma);
+      //
+      // }
+        public static void Weihnachtsgeld_Menu2()
         {
-            double ge;
-            double al;
-            double zif;
-
             string[] lines = new string[] {
-                "Geben sie Ihr Gehalt, danch Ihr Alter","und zuletzt die Zeit in der Sie zu der Firma gehören an! "
+                "Geben sie Ihr Gehalt ein","","Geben sie Ihr Alter ein","","Geben sie die Zeit in der Sie zu der Firma gehören an!","",""
             };
-            GUIBuilder("DEIN WEIHNACHTSGELD!",lines);
-
-            ge = int.Parse(Console.ReadLine());
             GUIBuilder("DEIN WEIHNACHTSGELD!", lines);
-            al = int.Parse(Console.ReadLine());
-            GUIBuilder("DEIN WEIHNACHTSGELD!", lines);
-            zif = int.Parse(Console.ReadLine());
+            int AbstandLeft = Console.CursorLeft;
+            Console.SetCursorPosition(AbstandLeft, 3);
+            Persongehalt = Console.ReadLine();
+            Console.SetCursorPosition(AbstandLeft, 7);
+            Personage = Console.ReadLine();
+            Console.SetCursorPosition(AbstandLeft, 11);
+            Persontreue = Console.ReadLine();
+            SetPerson(Personage, Persongehalt, Persontreue);
 
-            Weihnachtsgeld_Rechner(ge,al,zif);
-
-
+            Weihnachtsgeld_Rechner(Person.Gehalt, Person.Age, Person.Treue);
         }
-
-
+        public static void SetPerson(string Personage, string Persongehalt, string Persontreue)
+        {
+            Person.SetAge(Personage);
+            Person.SetGehalt(Persongehalt);
+            Person.SetTreue(Persontreue);
+        }
 
         private static void Weihnachtsgeld_Rechner(double gehalt, double alter, double zifirma)
         {
