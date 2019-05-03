@@ -8,55 +8,60 @@ namespace Weihnachtsgeld_Rechner
 {
     class Program
     {
-        public static string Personage;
-        public static string Persongehalt;
-        public static string Persontreue;
+        public static double Personage;
+        public static double Persongehalt;
+        public static double Persontreue;
 
         public static void Main(string[] args)
         {
             Console.Title = "Weihnachtsgeld - Rechner";
             Weihnachtsgeld_Menu();
         }
-
+        static int AbstandLeft;
         public static void Weihnachtsgeld_Menu()
         {
             string[] lines = new string[] {
                 "Geben sie Ihr Gehalt ein","","Geben sie Ihr Alter ein","","Geben sie die Zeit in der Sie zu der Firma gehören an!","",""
             };
             GUIBuilder("DEIN WEIHNACHTSGELD!", lines);
-            int AbstandLeft = Console.CursorLeft;
+            AbstandLeft = Console.CursorLeft;
             Console.SetCursorPosition(AbstandLeft, 3);
-            Persongehalt = Console.ReadLine();
+            Persongehalt = ParseDouble();
             Console.SetCursorPosition(AbstandLeft, 7);
-            Personage = Console.ReadLine();
+            Personage = ParseDouble();
             Console.SetCursorPosition(AbstandLeft, 11);
-            Persontreue = Console.ReadLine();
-            SetPerson(Personage, Persongehalt, Persontreue);
+            Persontreue = ParseDouble();
+            Person person = new Person(Personage, Personage, Persontreue);
 
-            Weihnachtsgeld_Rechner(Person.Gehalt, Person.Age, Person.Treue);
+            Weihnachtsgeld_Rechner(person);
         }
-        public static void SetPerson(string Personage, string Persongehalt, string Persontreue)
+        public static double ParseDouble()
         {
-            Person.SetAge(Personage);
-            Person.SetGehalt(Persongehalt);
-            Person.SetTreue(Persontreue);
+            double Value = 0;
+            while (!(double.TryParse(Console.ReadLine(), out Value)))
+            {
+                int AbstandUp = Console.CursorTop -1;
+                Console.WriteLine("* Eingabe Fehlerhaft!!, bitte erneut eingeben");
+                Console.SetCursorPosition(AbstandLeft, AbstandUp);
+            }
+            return Value;
         }
 
-        private static void Weihnachtsgeld_Rechner(double gehalt, double alter, double zifirma)
+        private static void Weihnachtsgeld_Rechner(Person person)
         {
             double entgeld = new double();
 
-            if (alter >= 50 & zifirma >= 20)
+            if (person.getAge() >= 50 & person.getTreue() >= 20)
             {
-                entgeld = gehalt * 1.45;
+                entgeld = person.getGehalt() * 1.45;
             }
-            else if(zifirma >= 15 | alter >= 55)
+            else if(person.getTreue() >= 15 | person.getAge() >= 55)
             {
-                entgeld = gehalt * 1.4;
+                entgeld = person.getGehalt() * 1.4;
             }
             else
             {
-                entgeld = gehalt * 1.3;
+                entgeld = person.getGehalt() * 1.3;
             }
 
             string stentgled = entgeld.ToString();
