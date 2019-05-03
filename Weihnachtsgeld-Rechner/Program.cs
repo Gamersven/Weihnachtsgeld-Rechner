@@ -12,33 +12,13 @@ namespace Weihnachtsgeld_Rechner
         public static string Persongehalt;
         public static string Persontreue;
 
-        public double Gehalt;
-        public double Alter;
-        public double Zeitinfirma;
-
         public static void Main(string[] args)
         {
             Console.Title = "Weihnachtsgeld - Rechner";
-            Weihnachtsgeld_Menu2();
+            Weihnachtsgeld_Menu();
         }
 
-      // public void Weihnachtsgeld_Menu()
-      // {
-      //     string[] lines = new string[] {
-      //         "Geben sie Ihr Gehalt ein","","Geben sie Ihr Alter ein","","Geben sie die Zeit in der Sie zu der Firma gehören an!"
-      //     };
-      //     GUIBuilder("DEIN WEIHNACHTSGELD!", lines);
-      //
-      //     Gehalt = double.Parse(Console.ReadLine());
-      //     GUIBuilder("DEIN WEIHNACHTSGELD!", lines);
-      //     Alter = int.Parse(Console.ReadLine());
-      //     GUIBuilder("DEIN WEIHNACHTSGELD!", lines);
-      //     Zeitinfirma = double.Parse(Console.ReadLine());
-      //
-      //     Weihnachtsgeld_Rechner(Gehalt, Alter, Zeitinfirma);
-      //
-      // }
-        public static void Weihnachtsgeld_Menu2()
+        public static void Weihnachtsgeld_Menu()
         {
             string[] lines = new string[] {
                 "Geben sie Ihr Gehalt ein","","Geben sie Ihr Alter ein","","Geben sie die Zeit in der Sie zu der Firma gehören an!","",""
