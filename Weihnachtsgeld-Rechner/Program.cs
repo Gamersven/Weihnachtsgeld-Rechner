@@ -8,16 +8,20 @@ namespace Weihnachtsgeld_Rechner
 {
     class Program
     {
-        public static double Personage;
+        public static int Personage;
         public static double Persongehalt;
         public static double Persontreue;
+        public static string Personname;
+        static int AbstandLeft;
 
         public static void Main(string[] args)
         {
             Console.Title = "Weihnachtsgeld - Rechner";
+            Personname = "TEST";
+
             Weihnachtsgeld_Menu();
         }
-        static int AbstandLeft;
+        
         public static void Weihnachtsgeld_Menu()
         {
             string[] lines = new string[] {
@@ -28,10 +32,10 @@ namespace Weihnachtsgeld_Rechner
             Console.SetCursorPosition(AbstandLeft, 3);
             Persongehalt = ParseDouble();
             Console.SetCursorPosition(AbstandLeft, 7);
-            Personage = ParseDouble();
+            Personage = ParseInt();
             Console.SetCursorPosition(AbstandLeft, 11);
             Persontreue = ParseDouble();
-            Person person = new Person(Personage, Personage, Persontreue);
+            Person person = new Person(Personname, Personage, Persongehalt, Persontreue);
 
             Weihnachtsgeld_Rechner(person);
         }
@@ -40,8 +44,19 @@ namespace Weihnachtsgeld_Rechner
             double Value = 0;
             while (!(double.TryParse(Console.ReadLine(), out Value)))
             {
-                int AbstandUp = Console.CursorTop -1;
+                int AbstandUp = Console.CursorTop - 1;
                 Console.WriteLine("* Eingabe Fehlerhaft!!, bitte erneut eingeben");
+                Console.SetCursorPosition(AbstandLeft, AbstandUp);
+            }
+            return Value;
+        }
+        public static int ParseInt()
+        {
+            int Value = 0;
+            while (!(int.TryParse(Console.ReadLine(), out Value)))
+            {
+                int AbstandUp = Console.CursorTop - 1;
+                Console.WriteLine("* Eingabe Fehlerhaft!!, bitte eine Ganze Zahl eingeben.");
                 Console.SetCursorPosition(AbstandLeft, AbstandUp);
             }
             return Value;
@@ -51,22 +66,22 @@ namespace Weihnachtsgeld_Rechner
         {
             double entgeld = new double();
 
-            if (person.getAge() >= 50 & person.getTreue() >= 20)
+            if (person.GetAge() >= 50 & person.GetTreue() >= 20.0)
             {
-                entgeld = person.getGehalt() * 1.45;
+                entgeld = person.GetGehalt() * 1.45;
             }
-            else if(person.getTreue() >= 15 | person.getAge() >= 55)
+            else if(person.GetTreue() >= 15.0 | person.GetAge() >= 55)
             {
-                entgeld = person.getGehalt() * 1.4;
+                entgeld = person.GetGehalt() * 1.4;
             }
             else
             {
-                entgeld = person.getGehalt() * 1.3;
+                entgeld = person.GetGehalt() * 1.3;
             }
 
             string stentgled = entgeld.ToString();
 
-            string[] line = new string[] { "Ihr Entgeld beträgt: ", stentgled + " EURO" };
+            string[] line = new string[] { person.GetName() + ", Ihr Entgeld beträgt: ", stentgled + " EURO" };
             GUIBuilder("IHR ENTGELD!", line);
             Console.ReadKey(true);
         }
