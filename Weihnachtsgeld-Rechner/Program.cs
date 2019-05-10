@@ -90,6 +90,9 @@ namespace Weihnachtsgeld_Rechner
             string[] line = new string[] { person.GetName() + ", Ihr Entgeld beträgt: ", stentgled + " EURO" };
             GUIBuilder("IHR ENTGELD!", line, false);
             Console.ReadKey(true);
+            Console.Clear();
+
+            Weihnachtsgeld_Menu();
         }
 
         public static void GUIBuilder(string title, string[] lines,bool auswahl)
