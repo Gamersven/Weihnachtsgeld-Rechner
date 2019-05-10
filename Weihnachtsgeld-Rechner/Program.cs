@@ -28,7 +28,7 @@ namespace Weihnachtsgeld_Rechner
                 "Geben sie Ihr Gehalt ein","","Geben sie Ihr Alter ein","","Geben sie die Zeit in der Sie zu der Firma gehören an!"
             };
             GUIBuilder("DEIN WEIHNACHTSGELD!", lines, false);
-            AbstandLeft = Console.CursorLeft;
+            AbstandLeft = 10;
             Console.SetCursorPosition(AbstandLeft, 3);
             Persongehalt = ParseDouble();
             Console.SetCursorPosition(AbstandLeft, 7);
