@@ -27,7 +27,7 @@ namespace Weihnachtsgeld_Rechner
             string[] lines = new string[] {
                 "Geben sie Ihr Gehalt ein","","Geben sie Ihr Alter ein","","Geben sie die Zeit in der Sie zu der Firma gehören an!","",""
             };
-            GUIBuilder("DEIN WEIHNACHTSGELD!", lines);
+            GUIBuilder("DEIN WEIHNACHTSGELD!", lines, true);
             AbstandLeft = Console.CursorLeft;
             Console.SetCursorPosition(AbstandLeft, 3);
             Persongehalt = ParseDouble();
@@ -82,11 +82,11 @@ namespace Weihnachtsgeld_Rechner
             string stentgled = entgeld.ToString();
 
             string[] line = new string[] { person.GetName() + ", Ihr Entgeld beträgt: ", stentgled + " EURO" };
-            GUIBuilder("IHR ENTGELD!", line);
+            GUIBuilder("IHR ENTGELD!", line, false);
             Console.ReadKey(true);
         }
 
-        public static void GUIBuilder(string title, string[] lines)
+        public static void GUIBuilder(string title, string[] lines,bool auswahl)
         {
             int maxLänge = 0;
 
@@ -119,15 +119,29 @@ namespace Weihnachtsgeld_Rechner
             }
 
             SternchenSetzten(1);
-            Console.Write(" AUSWAHL: ");
-            int cursleft = Console.CursorLeft;
-            int curstop = Console.CursorTop;
-            LeerzeichenSetzten(maxLänge - 10 - 2);
-            SternchenSetzten(1);
-            Console.WriteLine();
+            int cursleft = 0;
+            int curstop = 0;
+
+            if (auswahl)
+            {
+                Console.Write(" AUSWAHL: ");
+
+                cursleft = Console.CursorLeft;
+                curstop = Console.CursorTop;
+                LeerzeichenSetzten(maxLänge - 10 - 2);
+            }
+            else
+            {
+                LeerzeichenSetzten(maxLänge -2);
+            }
+                SternchenSetzten(1);
+                Console.WriteLine();
             LeereZeile(maxLänge);
             SternchenSetzten(maxLänge);
-            Console.SetCursorPosition(cursleft, curstop);
+            if (auswahl)
+            {
+                Console.SetCursorPosition(cursleft, curstop);
+            }
         }
 
 
