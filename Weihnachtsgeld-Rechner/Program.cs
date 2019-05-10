@@ -25,9 +25,9 @@ namespace Weihnachtsgeld_Rechner
         public static void Weihnachtsgeld_Menu()
         {
             string[] lines = new string[] {
-                "Geben sie Ihr Gehalt ein","","Geben sie Ihr Alter ein","","Geben sie die Zeit in der Sie zu der Firma gehören an!","",""
+                "Geben sie Ihr Gehalt ein","","Geben sie Ihr Alter ein","","Geben sie die Zeit in der Sie zu der Firma gehören an!"
             };
-            GUIBuilder("DEIN WEIHNACHTSGELD!", lines, true);
+            GUIBuilder("DEIN WEIHNACHTSGELD!", lines, false);
             AbstandLeft = Console.CursorLeft;
             Console.SetCursorPosition(AbstandLeft, 3);
             Persongehalt = ParseDouble();
