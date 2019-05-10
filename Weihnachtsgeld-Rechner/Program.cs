@@ -13,6 +13,7 @@ namespace Weihnachtsgeld_Rechner
         public static double Persontreue;
         public static string Personname;
         static int AbstandLeft;
+        public static int maxLänge = 0;
 
         public static void Main(string[] args)
         {
@@ -25,15 +26,15 @@ namespace Weihnachtsgeld_Rechner
         public static void Weihnachtsgeld_Menu()
         {
             string[] lines = new string[] {
-                "Geben sie Ihr Gehalt ein","","Geben sie Ihr Alter ein","","Geben sie die Zeit in der Sie zu der Firma gehören an!"
+                "Geben sie Ihr Gehalt ein","","Geben sie Ihr Alter ein","","Geben sie die Zeit in der Sie zu der Firma gehören an!",""
             };
             GUIBuilder("DEIN WEIHNACHTSGELD!", lines, false);
             AbstandLeft = 10;
-            Console.SetCursorPosition(AbstandLeft, 3);
+            Console.SetCursorPosition(AbstandLeft, 4);
             Persongehalt = ParseDouble();
-            Console.SetCursorPosition(AbstandLeft, 7);
+            Console.SetCursorPosition(AbstandLeft, 8);
             Personage = ParseInt();
-            Console.SetCursorPosition(AbstandLeft, 11);
+            Console.SetCursorPosition(AbstandLeft, 12);
             Persontreue = ParseDouble();
             Person person = new Person(Personname, Personage, Persongehalt, Persontreue);
 
@@ -47,10 +48,10 @@ namespace Weihnachtsgeld_Rechner
                 int AbstandUp = Console.CursorTop - 1;
                 Console.WriteLine("* Eingabe Fehlerhaft!!, bitte erneut eingeben");
                 Console.SetCursorPosition(AbstandLeft, AbstandUp);
-                Console.WriteLine("                                                ");
+                GUI.LeereZeile(maxLänge);
                 Console.SetCursorPosition(AbstandLeft, AbstandUp);
             }
-            Console.WriteLine("                                                ");
+            GUI.LeereZeile(maxLänge);
             return Value;
         }
         public static int ParseInt()
@@ -61,10 +62,10 @@ namespace Weihnachtsgeld_Rechner
                 int AbstandUp = Console.CursorTop - 1;
                 Console.WriteLine("* Eingabe Fehlerhaft!!, bitte eine Ganze Zahl eingeben.");
                 Console.SetCursorPosition(AbstandLeft, AbstandUp);
-                Console.WriteLine("                                                ");
+                GUI.LeereZeile(maxLänge);
                 Console.SetCursorPosition(AbstandLeft, AbstandUp);
             }
-            Console.WriteLine("                                                ");
+            GUI.LeereZeile(maxLänge);
             return Value;
         }
 
@@ -87,17 +88,17 @@ namespace Weihnachtsgeld_Rechner
 
             string stentgled = entgeld.ToString();
 
+            maxLänge = 0;
             string[] line = new string[] { person.GetName() + ", Ihr Entgeld beträgt: ", stentgled + " EURO" };
             GUIBuilder("IHR ENTGELD!", line, false);
             Console.ReadKey(true);
-            Console.Clear();
 
             Weihnachtsgeld_Menu();
         }
 
         public static void GUIBuilder(string title, string[] lines,bool auswahl)
         {
-            int maxLänge = 0;
+            Console.Clear();
 
             for (int i = 0; i < lines.Length; i++)
             {
@@ -108,84 +109,100 @@ namespace Weihnachtsgeld_Rechner
                 maxLänge += 8;
             }
 
+
             Console.SetWindowSize(maxLänge, lines.Length * 2 + 4);
 
-            int titleSpace = (maxLänge - title.Length) / 2;
-            SternchenSetzten(titleSpace);
-            Console.Write(title);
-            SternchenSetzten(titleSpace);
-            Console.WriteLine();
+           //int titleSpace = (maxLänge - title.Length) / 2;
+           //GUI.SternchenSetzten(titleSpace);
+           //Console.Write(title);
+           //GUI.SternchenSetzten(titleSpace);
+           //Console.WriteLine();
+
+
+            GUI.Title(title, maxLänge);
 
             for (int i = 0; i < lines.Length; i++)
             {
-                SternchenSetzten(1);
-                Console.Write(" ");
-                Console.Write(lines[i]);
-                LeerzeichenSetzten(maxLänge - lines[i].Length - 2 - 1);
-                SternchenSetzten(1);
-                Console.WriteLine();
-                LeereZeile(maxLänge);
-            }
+                GUI.NormaleZeile(lines[i], maxLänge);
 
-            SternchenSetzten(1);
-            int cursleft = 0;
+               //GUI.SternchenSetzten(1);
+               //Console.Write(" ");
+               //Console.Write(lines[i]);
+               //GUI.LeerzeichenSetzten(maxLänge - lines[i].Length - 2 - 1);
+               //GUI.SternchenSetzten(1);
+               //Console.WriteLine();
+               //GUI.LeereZeile(maxLänge);
+            }
+            #region Auswahl
+
+           // GUI.SternchenSetzten(1);
+            int cursleft = 8;
             int curstop = 0;
 
             if (auswahl)
             {
-                Console.Write(" AUSWAHL: ");
-
-                cursleft = Console.CursorLeft;
                 curstop = Console.CursorTop;
-                LeerzeichenSetzten(maxLänge - 10 - 2);
+
+                GUI.Auswahl(maxLänge);
+
+               //
+               // Console.Write(" AUSWAHL: ");
+               //
+               // cursleft = Console.CursorLeft;
+               // curstop = Console.CursorTop;
+               // GUI.LeerzeichenSetzten(maxLänge - 10 - 2);
             }
             else
             {
-                LeerzeichenSetzten(maxLänge -2);
+                GUI.LeereZeile(maxLänge);
             }
-                SternchenSetzten(1);
-                Console.WriteLine();
-            LeereZeile(maxLänge);
-            SternchenSetzten(maxLänge);
+
+            GUI.Ende(maxLänge);
+
+
+           // GUI.SternchenSetzten(1);
+           // Console.WriteLine();
+           // GUI.LeereZeile(maxLänge);
+           // GUI.SternchenSetzten(maxLänge);
             if (auswahl)
             {
                 Console.SetCursorPosition(cursleft, curstop);
             }
         }
+        #endregion 
 
-
-
-        #region Sternchen und leerzeichen
-
-        public static void LeereZeile(int maxLänge)
-        {
-            SternchenSetzten(1);
-            LeerzeichenSetzten(maxLänge - 2);
-            SternchenSetzten(1);
-            Console.WriteLine();
-        }
-
-        #region Sternchen Setzten
-
-        public static void SternchenSetzten(int s)
-        {
-            for (int i = 0; i < s; i++)
-            {
-                Console.Write("*");
-            }
-        }
-        #endregion
-
-        #region Leerzeichen Setzten
-
-        public static void LeerzeichenSetzten(int s)
-        {
-            for (int i = 0; i < s; i++)
-            {
-                Console.Write(" ");
-            }
-        }
-        #endregion
-        #endregion
+        //
+        // #region Sternchen und leerzeichen
+        //
+        // public static void LeereZeile(int maxLänge)
+        // {
+        //     SternchenSetzten(1);
+        //     LeerzeichenSetzten(maxLänge - 2);
+        //     SternchenSetzten(1);
+        //     Console.WriteLine();
+        // }
+        //
+        // #region Sternchen Setzten
+        //
+        // public static void SternchenSetzten(int s)
+        // {
+        //     for (int i = 0; i < s; i++)
+        //     {
+        //         Console.Write("*");
+        //     }
+        // }
+        // #endregion
+        //
+        // #region Leerzeichen Setzten
+        //
+        // public static void LeerzeichenSetzten(int s)
+        // {
+        //     for (int i = 0; i < s; i++)
+        //     {
+        //         Console.Write(" ");
+        //     }
+        // }
+        // #endregion
+        // #endregion
     }
 }
