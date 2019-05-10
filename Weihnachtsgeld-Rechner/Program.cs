@@ -66,11 +66,11 @@ namespace Weihnachtsgeld_Rechner
         {
             double entgeld = new double();
 
-            if (person.GetAge() >= 50 & person.GetTreue() >= 20.0)
+            if (person.GetAge() >= 50 && person.GetTreue() >= 20.0)
             {
                 entgeld = person.GetGehalt() * 1.45;
             }
-            else if(person.GetTreue() >= 15.0 | person.GetAge() >= 55)
+            else if(person.GetTreue() >= 15.0 || person.GetAge() >= 55)
             {
                 entgeld = person.GetGehalt() * 1.4;
             }
