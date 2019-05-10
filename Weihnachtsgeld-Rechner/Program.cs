@@ -47,7 +47,10 @@ namespace Weihnachtsgeld_Rechner
                 int AbstandUp = Console.CursorTop - 1;
                 Console.WriteLine("* Eingabe Fehlerhaft!!, bitte erneut eingeben");
                 Console.SetCursorPosition(AbstandLeft, AbstandUp);
+                Console.WriteLine("                                                ");
+                Console.SetCursorPosition(AbstandLeft, AbstandUp);
             }
+            Console.WriteLine("                                                ");
             return Value;
         }
         public static int ParseInt()
@@ -58,7 +61,10 @@ namespace Weihnachtsgeld_Rechner
                 int AbstandUp = Console.CursorTop - 1;
                 Console.WriteLine("* Eingabe Fehlerhaft!!, bitte eine Ganze Zahl eingeben.");
                 Console.SetCursorPosition(AbstandLeft, AbstandUp);
+                Console.WriteLine("                                                ");
+                Console.SetCursorPosition(AbstandLeft, AbstandUp);
             }
+            Console.WriteLine("                                                ");
             return Value;
         }
 
