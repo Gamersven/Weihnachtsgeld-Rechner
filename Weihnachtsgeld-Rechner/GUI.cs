@@ -8,13 +8,49 @@ namespace Weihnachtsgeld_Rechner
 {
     class GUI
     {
+        public static int maxLänge;
 
+        public static void GUIBuilder(string title, string[] lines, bool auswahl)
+        {
+            maxLänge = 0;
+            Console.Clear();
 
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (lines[i].Length > maxLänge)
+                {
+                    maxLänge = lines[i].Length;
+                }
+                maxLänge += 8;
+            }
 
+            Console.SetWindowSize(maxLänge, lines.Length * 2 + 4);
 
+            Title(title);
 
+            for (int i = 0; i < lines.Length; i++)
+            {
+                NormaleZeile(lines[i]);
+            }
 
-        public static void Title(string title, int maxLänge)
+            int cursleft = 8;
+            int curstop = 0;
+
+            if (auswahl)
+            {
+                curstop = Console.CursorTop;
+                Auswahl();
+                Ende();
+                Console.SetCursorPosition(cursleft, curstop);
+            }
+            else
+            {
+                LeereZeile();
+                Ende();
+            }
+        }
+
+        public static void Title(string title)
         {
             int titleSpace = (maxLänge - title.Length) / 2;
             SternchenSetzten(titleSpace);
@@ -23,16 +59,16 @@ namespace Weihnachtsgeld_Rechner
             Console.WriteLine();
         }
 
-        public static void NormaleZeile(string Input, int maxLänge)
+        public static void NormaleZeile(string Input)
         {
-            LeereZeile(maxLänge);
+            LeereZeile();
             SternchenSetzten(1);
             Console.Write(" " + Input);
             LeerzeichenSetzten(maxLänge - Input.Length - 2 - 1);
             Console.WriteLine("*");
         }
 
-        public static void Auswahl(int maxLänge)
+        public static void Auswahl()
         {
             int CursorLeft = Console.CursorLeft;
             int CursorTop = Console.CursorTop;
@@ -41,16 +77,16 @@ namespace Weihnachtsgeld_Rechner
             LeerzeichenSetzten(maxLänge - 10 - 2);
 
         }
-        public static void Ende(int maxLänge)
+        public static void Ende()
         {
-            LeereZeile(maxLänge);
+            LeereZeile();
             SternchenSetzten(maxLänge);
 
         }
 
         #region Sternchen und leerzeichen
 
-        public static void LeereZeile(int maxLänge)
+        public static void LeereZeile()
         {
             SternchenSetzten(1);
             LeerzeichenSetzten(maxLänge - 2);
@@ -73,10 +109,14 @@ namespace Weihnachtsgeld_Rechner
 
         public static void LeerzeichenSetzten(int s)
         {
+            StringBuilder leerzeichen = new StringBuilder();
+
             for (int i = 0; i < s; i++)
             {
-                Console.Write(" ");
+                leerzeichen.Append(" ");
             }
+
+            Console.Write(leerzeichen);
         }
         #endregion
         #endregion
