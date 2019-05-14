@@ -59,7 +59,7 @@ namespace Weihnachtsgeld_Rechner
             {
                 int AbstandUp = Console.CursorTop - 1;
                 Console.SetCursorPosition(0, AbstandUp);
-                GUI.NormaleZeile("* Eingabe Fehlerhaft!!, bitte eine Ganze Zahl eingeben.");
+                GUI.NormaleZeile("Eingabe Fehlerhaft!!, bitte eine Ganze Zahl eingeben.");
                 Console.SetCursorPosition(AbstandLeft, AbstandUp);
             }
             GUI.LeereZeile();
