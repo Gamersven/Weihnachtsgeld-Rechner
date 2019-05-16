@@ -16,6 +16,7 @@ namespace Weihnachtsgeld_Rechner
 
         public static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
             Console.Title = "Weihnachtsgeld - Rechner";
             Weihnachtsgeld_Menu();
         }
@@ -28,7 +29,7 @@ namespace Weihnachtsgeld_Rechner
                 "Geben sie Ihr Alter ein","",
                 "Geben sie die Zeit in der Sie zu der Firma gehören an!",""
             };
-            GUI.GUIBuilder("DEIN WEIHNACHTSGELD!", lines, false);
+            GUI.GUIBuilder(" DEIN WEIHNACHTSGELD! ", lines, false);
             AbstandLeft = 10;
             Console.SetCursorPosition(AbstandLeft, 4);
             name = Console.ReadLine();
@@ -49,7 +50,7 @@ namespace Weihnachtsgeld_Rechner
             {
                 int AbstandUp = Console.CursorTop - 1;
                 Console.SetCursorPosition(0, AbstandUp);
-                GUI.NormaleZeile("Eingabe Fehlerhaft!!, bitte erneut eingeben");
+                GUI.NormaleZeile("Eingabe Fehlerhaft!!, bitte Zahl ohne Symbole eingeben");
                 Console.SetCursorPosition(AbstandLeft, AbstandUp);
             }
             GUI.LeereZeile();
@@ -62,7 +63,7 @@ namespace Weihnachtsgeld_Rechner
             {
                 int AbstandUp = Console.CursorTop - 1;
                 Console.SetCursorPosition(0, AbstandUp);
-                GUI.NormaleZeile("Eingabe Fehlerhaft!!, bitte eine Ganze Zahl eingeben.");
+                GUI.NormaleZeile("Eingabe Fehlerhaft!!, R U Kidding me?");
                 Console.SetCursorPosition(AbstandLeft, AbstandUp);
             }
             GUI.LeereZeile();
@@ -71,24 +72,27 @@ namespace Weihnachtsgeld_Rechner
 
         private static void Weihnachtsgeld_Rechner(Person person)
         {
-            double entgeld = new double();
+            double weihnachtsgeld = new double();
 
             if (person.GetAge() >= 50 && person.GetTreue() >= 20.0)
             {
-                entgeld = person.GetGehalt() * 1.45;
+                weihnachtsgeld = person.GetGehalt() * 0.45;
             }
             else if (person.GetTreue() >= 15.0 || person.GetAge() >= 55)
             {
-                entgeld = person.GetGehalt() * 1.4;
+                weihnachtsgeld = person.GetGehalt() * 0.4;
             }
             else
             {
-                entgeld = person.GetGehalt() * 1.3;
+                weihnachtsgeld = person.GetGehalt() * 0.3;
             }
-            string stentgled = entgeld.ToString();
 
-            string[] line = new string[] { person.GetName() + ", Ihr Entgeld beträgt: ", stentgled + " EURO" };
-            GUI.GUIBuilder("IHR ENTGELD!", line, false);
+            string[] line = new string[] {
+                person.GetName() + 
+                ", Ihr Entgeld beträgt: ",
+                Math.Round(weihnachtsgeld + person.GetGehalt(), 2, MidpointRounding.AwayFromZero) + "€",
+                Math.Round(weihnachtsgeld, 2, MidpointRounding.AwayFromZero) + "€ Weihnachtsgeld + " + person.GetGehalt() + "€ Gehalt" };
+            GUI.GUIBuilder(" IHR ENTGELD! ", line, false);
 
             Console.ReadKey(true);
             Weihnachtsgeld_Menu();

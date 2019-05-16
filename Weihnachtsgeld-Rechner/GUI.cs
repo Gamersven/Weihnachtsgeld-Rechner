@@ -53,19 +53,25 @@ namespace Weihnachtsgeld_Rechner
         public static void Title(string title)
         {
             int titleSpace = (maxLänge - title.Length) / 2;
-            SternchenSetzten(titleSpace);
+            SternchenSetzten(titleSpace, false);
             Console.Write(title);
-            SternchenSetzten(titleSpace);
-            Console.WriteLine();
+            if ((maxLänge - title.Length) % 2 == 1)
+            {
+                SternchenSetzten(titleSpace +1, true);
+            }
+            else
+            {
+                SternchenSetzten(titleSpace, true);
+            }
         }
 
         public static void NormaleZeile(string Input)
         {
             LeereZeile();
-            SternchenSetzten(1);
+            SternchenSetzten(1, false);
             Console.Write(" " + Input);
             LeerzeichenSetzten(maxLänge - Input.Length - 2 - 1);
-            Console.WriteLine("*");
+            SternchenSetzten(1, true);
         }
 
         public static void Auswahl()
@@ -80,7 +86,7 @@ namespace Weihnachtsgeld_Rechner
         public static void Ende()
         {
             LeereZeile();
-            SternchenSetzten(maxLänge);
+            SternchenSetzten(maxLänge, false);
 
         }
 
@@ -88,19 +94,29 @@ namespace Weihnachtsgeld_Rechner
 
         public static void LeereZeile()
         {
-            SternchenSetzten(1);
+            SternchenSetzten(1, false);
             LeerzeichenSetzten(maxLänge - 2);
-            SternchenSetzten(1);
-            Console.WriteLine();
+            SternchenSetzten(1, true);
         }
 
         #region Sternchen Setzten
 
-        public static void SternchenSetzten(int s)
+        public static void SternchenSetzten(int s, bool endofline)
         {
-            for (int i = 0; i < s; i++)
+            if (endofline)
             {
-                Console.Write("*");
+                for (int i = 0; i < s; i++)
+                {
+                    Console.Write("*");
+                }
+                Console.WriteLine();
+            }
+            else
+            {
+                for (int i = 0; i < s; i++)
+                {
+                    Console.Write("*");
+                }
             }
         }
         #endregion
