@@ -17,23 +17,26 @@ namespace Weihnachtsgeld_Rechner
         public static void Main(string[] args)
         {
             Console.Title = "Weihnachtsgeld - Rechner";
-            Personname = "Du Schmog";
-
             Weihnachtsgeld_Menu();
         }
 
         public static void Weihnachtsgeld_Menu()
         {
             string[] lines = new string[] {
-                "Geben sie Ihr Gehalt ein","","Geben sie Ihr Alter ein","","Geben sie die Zeit in der Sie zu der Firma gehören an!",""
+                "Geben sie Ihren Namen ein","",
+                "Geben sie Ihr Gehalt ein","",
+                "Geben sie Ihr Alter ein","",
+                "Geben sie die Zeit in der Sie zu der Firma gehören an!",""
             };
             GUI.GUIBuilder("DEIN WEIHNACHTSGELD!", lines, false);
             AbstandLeft = 10;
             Console.SetCursorPosition(AbstandLeft, 4);
-            Persongehalt = ParseDouble();
+            Personname = Console.ReadLine();
             Console.SetCursorPosition(AbstandLeft, 8);
-            Personage = ParseInt();
+            Persongehalt = ParseDouble();
             Console.SetCursorPosition(AbstandLeft, 12);
+            Personage = ParseInt();
+            Console.SetCursorPosition(AbstandLeft, 16);
             Persontreue = ParseDouble();
             Person person = new Person(Personname, Personage, Persongehalt, Persontreue);
 
