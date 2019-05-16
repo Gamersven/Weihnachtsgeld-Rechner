@@ -8,10 +8,10 @@ namespace Weihnachtsgeld_Rechner
 {
     class Program
     {
-        public static int Personage;
-        public static double Persongehalt;
-        public static double Persontreue;
-        public static string Personname;
+        public static int alter;
+        public static double gehalt;
+        public static double treue;
+        public static string name;
         static int AbstandLeft;
 
         public static void Main(string[] args)
@@ -31,14 +31,14 @@ namespace Weihnachtsgeld_Rechner
             GUI.GUIBuilder("DEIN WEIHNACHTSGELD!", lines, false);
             AbstandLeft = 10;
             Console.SetCursorPosition(AbstandLeft, 4);
-            Personname = Console.ReadLine();
+            name = Console.ReadLine();
             Console.SetCursorPosition(AbstandLeft, 8);
-            Persongehalt = ParseDouble();
+            gehalt = ParseDouble();
             Console.SetCursorPosition(AbstandLeft, 12);
-            Personage = ParseInt();
+            alter = ParseInt();
             Console.SetCursorPosition(AbstandLeft, 16);
-            Persontreue = ParseDouble();
-            Person person = new Person(Personname, Personage, Persongehalt, Persontreue);
+            treue = ParseDouble();
+            Person person = new Person(name, alter, gehalt, treue);
 
             Weihnachtsgeld_Rechner(person);
         }

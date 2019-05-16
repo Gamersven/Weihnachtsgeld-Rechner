@@ -8,58 +8,58 @@ namespace Weihnachtsgeld_Rechner
 {
     public class Person
     {
-        private string Name;
-        private double Age;
-        private double Gehalt;
-        private double Treue;
+        private string name;
+        private double alter;
+        private double gehalt;
+        private double treue;
 
         public Person()
         {
-            this.Name = "";
-            this.Age = 0;
-            this.Gehalt = 0;
-            this.Treue = 0;
+            this.name = "";
+            this.alter = 0;
+            this.gehalt = 0;
+            this.treue = 0;
         }
 
-        public Person(string Personname, double Personage, double Persongehalt, double Persontreue)
+        public Person(string name, double alter, double gehalt, double treue)
         {
-            this.Name = Personname;
-            this.Age = Personage;
-            this.Gehalt = Persongehalt;
-            this.Treue = Persontreue;
+            this.name = name;
+            this.alter = alter;
+            this.gehalt = gehalt;
+            this.treue = treue;
         }
-        public void SetName(string Personname)
+        public void SetName(string name)
         {
-            Name = Personname;
+            this.name = name;
         }
-        public void SetAge(double Personage)
+        public void SetAge(double alter)
         {
-            Age = Personage;
+            this.alter = alter;
         }
-        public void SetGehalt(double Persongehalt)
+        public void SetGehalt(double gehalt)
         {
-            Gehalt = Persongehalt;
+            this.gehalt = gehalt;
         }
-        public void SetTreue(double Persontreue)
+        public void SetTreue(double treue)
         {
-            Treue = Persontreue;
+            this.treue = treue;
         }
 
         public string GetName()
         {
-            return this.Name;
+            return this.name;
         }
         public double GetAge()
         {
-            return this.Age;
+            return this.alter;
         }
         public double GetGehalt()
         {
-            return this.Gehalt;
+            return this.gehalt;
         }
         public double GetTreue()
         {
-            return this.Treue;
+            return this.treue;
         }
     }
 }
