@@ -17,7 +17,7 @@ namespace Weihnachtsgeld_Rechner
         public static void Main(string[] args)
         {
             Console.Title = "Weihnachtsgeld - Rechner";
-            Personname = "TEST";
+            Personname = "Du Schmog";
 
             Weihnachtsgeld_Menu();
         }
