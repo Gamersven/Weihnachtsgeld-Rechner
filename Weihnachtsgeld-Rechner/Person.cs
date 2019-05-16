@@ -24,9 +24,9 @@ namespace Weihnachtsgeld_Rechner
         public Person(string Personname, double Personage, double Persongehalt, double Persontreue)
         {
             this.Name = Personname;
-             this.Age = Personage;
-             this.Gehalt = Persongehalt;
-             this.Treue = Persontreue;
+            this.Age = Personage;
+            this.Gehalt = Persongehalt;
+            this.Treue = Persontreue;
         }
         public void SetName(string Personname)
         {
