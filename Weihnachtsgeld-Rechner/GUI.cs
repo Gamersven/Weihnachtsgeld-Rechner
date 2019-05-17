@@ -103,20 +103,22 @@ namespace Weihnachtsgeld_Rechner
 
         public static void SternchenSetzten(int s, bool endofline)
         {
+            StringBuilder sternchen = new StringBuilder();
             if (endofline)
             {
                 for (int i = 0; i < s; i++)
                 {
-                    Console.Write("*");
+                    sternchen.Append("*");
                 }
-                Console.WriteLine();
+                Console.WriteLine(sternchen);
             }
             else
             {
                 for (int i = 0; i < s; i++)
                 {
-                    Console.Write("*");
+                    sternchen.Append("*");
                 }
+                Console.Write(sternchen);
             }
         }
         #endregion
